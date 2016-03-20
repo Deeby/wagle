@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+
+
+<title>eat9</title>
+
+<!-- daum map api -->
+<script type="text/javascript" src="http://apis.daum.net/maps/maps3.js?apikey=79fb8aa1c738561cc9a53e5683be2558abd62dcf" charset="utf-8"></script> 
+<script type="text/javascript"> 
+	var map;
+	function showMap(latitude, longitude) {
+		console.log(latitude);
+		console.log(longitude);
+		
+		map = new daum.maps.Map(document.getElementById('map'), {
+			center: new daum.maps.LatLng(latitude, longitude)
+		});
+
+		var marker = new daum.maps.Marker({
+			position: new daum.maps.LatLng(latitude, longitude)
+		});
+		marker.setMap(map);
+	}
+</script>
+
+</head>
+
+<body>
+<a href="/">home</a> : 
+<a href="/imgapi"> Daum Image API</a>
+ | <a href="/mypeople"> Daum MyPeople API</a>
+ | <a href="/location"> Location</a> <!-- geolocation, daum map, google geocode --> 
+ | <a href="/tastingplace"> Tasting Place</a> <!-- ws data or naver region api --> 
+<hr/>
+
+<div id="html5_geolocation">
+	<b>HTML5 GeoLocation Test: </b>
+	<button onclick="getLocation()">get gps</button>
+	<div id="geolocation_result"></div>
+	<div id="geolocation_address"></div>
+	<br/>
+		
+	<div id="map" style="width:300px;height:300px;"></div>
+	
+	
+	
+	<script>
+	var x=document.getElementById("geolocation_result");
+	apikey = '48408559bb754dd16c517a5fd6d01e376a4be151';
+	
+	
+	function getLocation()
+	{//HTML5 Geolocation
+	  if (navigator.geolocation)
+	  {
+	    navigator.geolocation.getCurrentPosition(getAddress);
+	  }
+	  else
+	  {
+	  	x.innerHTML="Geolocation is not supported by this browser.";
+	  }
+	}
+	   
+	  
+	function getAddress(position)
+	{//daum 좌표-주소변환 API	
+	  	x.innerHTML="Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;	
+
+	    var oScript = document.createElement('script');
+	    oScript.type ='text/javascript';
+	    oScript.charset ='utf-8';          
+	    oScript.src = 'http://apis.daum.net/local/geo/coord2addr?apikey=' + apikey + 
+	                  '&latitude=' + position.coords.latitude + '&longitude=' +  position.coords.longitude +
+	                  '&output=json&callback=callBackAddress';
+	                  
+    	document.getElementsByTagName('head')[0].appendChild(oScript);
+    	
+    	showMap(position.coords.latitude, position.coords.longitude);
+	}	
+
+	function callBackAddress(data)
+	{//daum 좌표-주소변환 API CallBack 함수 
+	    var resultForm = document.getElementById("geolocation_address");
+	    resultForm.innerHTML = data.fullName;
+	}
+ 
+	</script>
+
+
+
+
+</div> 
+
+
+
+ 
+
+</body>
+
+</html>

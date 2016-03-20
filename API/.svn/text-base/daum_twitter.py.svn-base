@@ -1,0 +1,56 @@
+# -*- coding: utf-8 -*-
+import urllib2
+import json
+'''
+Created on 2013. 8. 10.
+
+@author: deajang
+'''
+from topicnzin.common.utils import toUnicode
+class DaumTwitter(object):
+    seed_url = u"http://m.search.daum.net/qsearch?w=swBoard&qsearch_ver=v2&viewtype=json&search_option=mobile&sort_type=&n={{limit}}&p=1&enddate=&begindate=&q={{kwd}}&uk=UQvBrm4t1A8AAFicKjIAAAD8"
+    
+    '''
+    classdocs
+    '''
+    @staticmethod
+    def search(keyword, limit=30):
+        keyword = toUnicode(keyword)
+        keyword = keyword.replace(" ", "+")
+        find_url = DaumTwitter.seed_url.replace("{{kwd}}", keyword).replace("{{limit}}",str(limit))
+        response = urllib2.urlopen(find_url)
+        json_data = response.read()
+        no_filter = json.loads(json_data)
+        no_filter = no_filter[u'RESULT'][u'SOCIALWEB_BOARD'][u'r'][u'ds']
+        if not u'data' in no_filter:
+            return []
+        else:
+            no_filter = no_filter[u'data']
+            
+        
+        return map(lambda x: {"text":str(x[u'text'].replace("<b>","").replace("</b>","")), "doc_id":str(x[u'docid']), "pub_date":str(x[u'pub_date']), "doc_url":str(x[u'doc_url']),"user_name":str(x[u'user_name']), "thumbnail_image":str(x[u'thumbnail_image']) }, no_filter) 
+    
+    """
+    여러개의 키워드로 검색할때를 의미한다.
+    """
+    @staticmethod
+    def searchs(keyword_list, limit=30):
+        sub_limit = int((limit / len(keyword_list) +0.9) * 1.2) if len(keyword_list)>1 else limit 
+        unique_dict ={} #중복되는 docid 를 제거해준다.
+        for keyword in keyword_list:
+            for result in DaumTwitter.search(keyword,sub_limit):
+                if not unique_dict.has_key(result["doc_id"]):
+                    unique_dict[result["doc_id"]] = result
+        
+        return [val for idx, val in enumerate(sorted(unique_dict.values(), key=lambda result : result["pub_date"], reverse=True)) if idx<limit]
+    
+                     
+                
+    
+if __name__ == "__main__":
+    
+    result = DaumTwitter.searchs([u"맛집",u"먹고싶다",u"맛있겠다",u"맛있",u"맛있져",u"땡긴다",u"먹을까",u"먹자",u"먹을래",u"먹어"])
+    for item in result:
+        print "[%s] %s : %s" %  ( item["docid"], item["pub_date"], item["text"])
+        
+ 

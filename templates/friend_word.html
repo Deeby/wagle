@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/jquery.mobile.flatui.css')}}" />
+  <script src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
+  <script src="{{url_for('static', filename='js/jquery.mobile-1.3.1.min.js')}}"></script>
+  </head>
+<body>
+  <div data-role="page">
+
+    <div data-role="panel" id="panel" data-position="right" data-theme="d" data-display="push"></div>
+
+    <div data-role="header">
+      <a data-iconpos="notext" href="javascript:window.history.back();" data-role="button" data-icon="back"></a>
+      <h1>와글와글 키워드</h1>
+    </div>
+    <div data-role="content" role="main">
+      <ul data-role="listview" data-inset="true">
+        <li data-role="list-divider" data-theme="a">{{ title }}</li>
+        	{% for word , cnt in result %}
+        	<li><a href="/friend_word/{{head}}{{word}}">{{word}}</a><span class="ui-li-count">{{cnt}}</span></li>
+        	{% endfor %}
+      </ul>
+        <ul data-role="listview" class="ui-listview">
+      	<li data-role="list-divider" data-theme="a">'{{word}}' 트윗 검색 결과</li>
+      	<li>
+        	{% for twit in twitterList %}
+			<dl class="ui-li ui-li-static ui-btn-up-c ui-li-has-thumb">
+			    <img src="{{twit["thumbnail_image"]}}" class="ui-li-thumb">
+			    <p class="ui-li-heading">[{{twit["pub_date"]}}]&nbsp;&nbsp;{{twit["user_name"]}} </p>
+			    <p class="ui-li-desc" style="overflow: normal;white-space:normal">{{twit["text"]}}</p>
+			</dl>
+			{% endfor %}
+		</li>
+	</ul>
+
+    </div>
+  </div>
+
+  <div id="highlight"> </div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<html>
+	<head>
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/jquery.mobile.flatui.css') }}">
+		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/wagle.css') }}">
+		<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/jquery.mobile-1.3.1.min.js') }}"></script>
+	</head>
+	<body>
+		<section>
+
+			<h1>CSS3 Sliding Content</h1>
+			<article>
+				<div id="slide1_container">
+					<div id="slide1_images">
+						<img src="http://webninjataylor.com/library/images/portfolio/photos/baltimore_mast.jpg" />
+						<img src="http://webninjataylor.com/library/images/portfolio/photos/dc_capitol.jpg" />
+						<img src="http://webninjataylor.com/library/images/portfolio/photos/jamaica_water.jpg" />
+						<img src="http://webninjataylor.com/library/images/portfolio/photos/jamaica_palmshadow.jpg" />
+					</div>
+				</div>
+				<p id="slide1_controls">
+					<span id="slide1-1">Image 1</span>
+					<span id="slide1-2">Image 2</span>
+					<span id="slide1-3">Image 3</span>
+					<span id="slide1-4">Image 4</span>
+				</p>
+			</article>
+		</section>
+	</body>
+	
+		<script type="text/javascript">
+		 
+				$("#slide1-1").click(function() {
+					$("#slide1_images").css("left", "0");
+				});
+				$("#slide1-2").click(function() {
+					$("#slide1_images").css("left", "-450px");
+				});
+				$("#slide1-3").click(function() {
+					$("#slide1_images").css("left", "-900px");
+				});
+				$("#slide1-4").click(function() {
+					$("#slide1_images").css("left", "-1350px");
+				});  
+         
+		</script>
+		
+</html>

@@ -1,0 +1,9 @@
+<center>
+	<div data-role="fieldcontain">
+		<div data-role="controlgroup" data-type="horizontal">
+			<a href="/food"   data-theme="a" data-role="button" >음식</a>
+			<a href="/tplist/"   data-theme="a" data-role="button">맛집</a>
+		</div>
+	</div>
+	<br />
+</center>

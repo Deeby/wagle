@@ -1,0 +1,195 @@
+/* sidebar */
+#right-sidebar {
+
+	background-color: #ECF0F1;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+#sidebar-title {
+
+	color: white;
+	background-color: #E67E22;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+#sidebar-content {
+	color: #2C3E50;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+#sidebar-content .ranking-list li {
+
+	color: #2C3E50;
+	list-style-type: decimal;
+	padding-bottom: 5px;
+	text-decoration: none;
+}
+
+/* navigator */
+
+#navigator {
+	width: 100%;
+	margin-bottom: 10px;
+}
+#navigator .food {
+	float: left;
+	width: 50%;
+	background-color: #F1C40F;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+#navigator .tastingplace {
+	float: left;
+	width: 50%;
+	background-color: #E74C3C;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+#navigator a {
+	text-align: center;
+	text-decoration: none;
+	color: white;
+}
+
+/* food.html */
+#main_img {
+	text-align: center;
+}
+
+#main_img img {
+
+	width: 100%;
+	position: relative;
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
+	border-radius: 12px;
+}
+
+#sub_img li {
+	list-style-type: none;
+}
+#sub_img img {
+	width: 100%;
+	height: 80%;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+}
+
+#contextaware_info {
+	text-align: center;
+	font-size: smaller;
+	padding-top: 0px;
+	margin-top: 0px;
+	margin-bottom: 5px;
+}
+
+/* tastingplace.html */
+#tastingplace {
+	font-size: 14px;
+}
+
+#tastingplace_img img {
+	width: 100%;
+}
+#tastingplace_desc {
+	text-align: justify;
+}
+#second_info code {
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	padding: 2px 4px;
+	color: #d14;
+	white-space: nowrap;
+	background-color: #f7f7f9;
+	border: 1px solid #e1e1e8;
+}
+
+#blog_reviews .review {
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	border: 1px solid #e1e1e8;
+	padding: 2px 4px;
+}
+
+#blog_reviews .review a:link {
+	color: #34495e;
+	text-decoration: none;
+}
+
+#blog_reviews .review a:visited {
+	color: #34495e;
+	text-decoration: none;
+}
+
+#blog_reviews .review .title {
+	font-size: medium;
+	padding-bottom: 5px;
+}
+
+#blog_reviews .review .desc {
+	text-align: justify;
+	font-size: smaller;
+}
+
+#twitter_list .twitter_data {
+	font: 11px;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+}
+
+/* tastingplace_list.html */
+
+#tpitem {
+
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	border-width: 1px;
+	border-color: #272727;
+	border-style: solid;
+}
+
+.
+*/* new */
+#slide1_controls span {
+	text-align: center;
+	padding-right: 2em;
+	cursor: pointer;
+}
+#slide1_container {
+	width: 280px;
+	height: 200px;
+	overflow: hidden;
+	position: relative;
+}
+#slide1_images {
+	position: absolute;
+	left: 0px;
+	width: 1400px;
+	-webkit-transition: all 1.0s ease-in-out;
+	-moz-transition: all 1.0s ease-in-out;
+	-o-transition: all 1.0s ease-in-out;
+	-ms-transition: all 1.0s ease-in-out;
+	transition: all 1.0s ease-in-out;
+}
+#slide1_images img {
+	padding: 0;
+	margin: 0;
+	float: left;
+	width: 280px;
+	height: 200px;
+}
+

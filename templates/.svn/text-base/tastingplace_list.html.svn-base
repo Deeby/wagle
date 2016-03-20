@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<script>
+			var latitude = null;
+			var longitude = null;
+
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(setPosition);
+			} else {
+				x.innerHTML = "Geolocation is not supported by this browser.";
+			}
+			function setPosition(position) {
+
+				latitude = position.coords.latitude;
+				longitude = position.coords.longitude;
+
+			}
+			
+			
+				function goBack() {
+				window.history.back()
+			}
+		</script>
+
+		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/jquery.mobile.flatui.css') }}">
+		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/wagle.css') }}">
+		<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/jquery.mobile-1.3.1.min.js') }}"></script>
+
+		<title>{{title}}</title>
+
+	</head>
+
+	<body>
+
+		<div data-role="page">
+			<div data-role="panel" id="panel" data-position="right" data-theme="a" data-display="push">
+				<!-- right sidebar page -->
+
+				{% if relatedFoodList %}
+				<ul data-role="listview" data-inset="true">
+					<li data-role="list-divider" data-theme="a">
+						{{ relatedKeyword }} 연관 음식
+					</li>
+
+					{% for relatedFood in relatedFoodList  %}
+					<li>
+						<a href="javascript:getLink('{{ relatedFood }}')">{{relatedFood}}</a>
+					</li>
+					{% endfor %}
+				</ul>
+				{% endif %}
+
+				<br/>
+
+				{% if relatedShopList %}
+
+				<ul data-role="listview" data-inset="true">
+					<li data-role="list-divider" data-theme="a">
+						{{ relatedKeyword }} 연관 가게
+					</li>
+
+					{% for relatedShop in relatedShopList  %}
+					<li>
+						<a href="javascript:getTpLink('{{ relatedShop }}')">{{relatedShop}}</a>
+					</li>
+					{% endfor %}
+				</ul>
+
+				{%endif%}
+
+			</div>
+
+			<div data-role="header">
+				<a data-iconpos="notext" href="javascript:goBack()" data-role="button" data-icon="back"></a>
+				<h1>{{ title}}</h1>
+				
+				{% if relatedFoodList %}
+				<a data-iconpos="notext" href="#panel" data-role="button" data-icon="flat-menu"></a>
+				{% else %}
+				<a data-iconpos="notext" data-role="button" ></a>
+				{% endif %} 
+			</div>
+
+			<div data-role="content" role="main">
+				{% for tastingplace in tastingplaceList  %}
+				{% if tastingplace.thumbnailImage %}
+				 
+				<a href="/tastingplace/{{ tastingplace.id }}">
+			 
+				
+				<ul data-role="listview" data-inset="true">
+					<li data-role="list-divider" data-theme="a">
+						<span id="tpName">{{tastingplace.name}}</span>
+					</li>
+
+					<table>
+						<tr>
+							<td>
+								<img src="data:image/png;base64,{{ tastingplace.thumbnailImage }}" width=100px height=100px/>
+							</td>
+
+							<td>
+							<span class="addr" style="font-size:11px;">{{tastingplace.addr}}</span>
+							  <br/>
+							  
+							  {% if tastingplace.popularmenu %}
+								<span class="popular_menu" style="font-size:11px;"> {{ tastingplace.popularmenu }}</span>
+							  {% endif %}
+							</td>
+
+						</tr>
+					</table>
+				</ul>
+				</a>
+				
+				
+				<br/>
+				{% endif %}
+				{% endfor %}
+
+			</div><!-- content -->
+		</div><!-- page -->
+
+	</body>
+
+	<script>
+		function createLink(food, lat, lng) {
+			var url = "http://indf.net:8000/tplist?"
+
+			if (food != null)
+				url += "food=" + food + "&";
+
+			if (lat != null)
+				url += "lat=" + lat + "&";
+
+			if (lng != null)
+				url += "lng=" + lng + "&";
+
+			return url;
+		}
+
+		function getLink(food) {
+
+			window.open(createLink(food, latitude, longitude), "_self")
+		}
+
+		function getTpLink(tp) {
+			var url = "http://indf.net:8000/tplist?"
+
+			if (tp != null)
+				url += "tp=" + tp;
+
+			window.open(url, "_self")
+
+		}
+
+	</script>
+
+</html>

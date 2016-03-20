@@ -1,7 +1,9 @@
 # wagle
+
 매쉬업코리아 2013_개발코드_백업
 
 # 당시컨셉
+
 윙스푼데이터를 수집하여 근처 가게 정보를
 트위터데이터를 수집하여 사람들이 '현재먹고싶은' 음식이 뭔지를 뽑아낸후
 
@@ -13,5 +15,7 @@
 
 
 # 링크
+
 http://mashupkorea.tistory.com/125
+
 https://www.flickr.com/photos/daumdna/sets/72157635335811067
